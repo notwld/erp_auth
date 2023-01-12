@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-import json
+import json,os
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 def login(username, password):
     req = requests.Session()
@@ -15,7 +18,7 @@ def login(username, password):
     req.post(url, data=payload)
     res = req.get('http://erp.uit.edu:803/StudentPortal/Student/EDU_EBS_STU_Dashboard.aspx')
         
-    return res.text,res.status_code
+    return res.text
 
-soup = BeautifulSoup(login('20b-115-se', '987654321')[0], 'html.parser')
+soup = BeautifulSoup(login(os.environ.get("rollno"), os.environ.get("password")), 'html.parser')
 print(soup.find('span', {'id': 'ctl00_user_name'}).text)
