@@ -49,7 +49,6 @@ table.add_column("Grade Point", style="dim", width=12)
 table.add_column("Semester", style="dim", width=12)
 table.add_column("Year", style="dim", width=12)
 
-#dont print last column
 for i in range(len(data)):
     table.add_row(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6])
 
